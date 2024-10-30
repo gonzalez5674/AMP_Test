@@ -1,0 +1,64 @@
+<!doctype html>
+<html ⚡ lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>Vidoomy AMP Creative</title>
+
+    <!-- AMP Runtime -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    <!-- AMP Components -->
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-element="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+
+    <style amp-custom>
+        #vidoomy-creative {
+            width: 100%;
+            height: 100%;
+        }
+        .close-creative {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <amp-list
+        id="vidoomy-slider-list"
+        [class]="closeCreative"
+        layout="fill"
+        src="https://ad.vidoomy.com/api/adserver/amp?zoneId=b2f168f2-349f-4eb8-90dd-d46436b95296&source_url=SOURCE_URL"
+        style="z-index: 2147483647; position: fixed; bottom: 0px; top: auto; width: 100%; height: 1px; margin: 0;"
+    >
+        <template type="amp-mustache">
+            <div id="vidoomy-creative">
+                <amp-iframe
+                    id="slider-iframe"
+                    [class]="closeCreative"
+                    class="slide-in"
+                    width="20"
+                    height="20"
+                    layout="fill"
+                    resizable
+                    frameborder="0"
+                    sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation"
+                    src="{{iframeSrc}}"
+                    style="inset: {{inset}}; width: 20px; height: 20px;"
+                >
+                    <button on="tap:AMP.setState({closeCreative:'close-creative'})" 
+                        style="z-index: 1; position: absolute; top: 0; right: 20px; width: 80px; height: 30px; border: none; outline: none; background-color: transparent; cursor: pointer;">
+                    </button>
+                    <div overflow></div>
+                    <div placeholder></div>
+                </amp-iframe>
+            </div>
+        </template>
+    </amp-list>
+
+</body>
+</html>
